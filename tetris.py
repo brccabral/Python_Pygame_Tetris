@@ -203,7 +203,33 @@ def draw_window(surface, grid):
     pygame.display.update()
 
 def main():
-    pass
+    locked_positions = {}
+    grid = create_grid(locked_positions)
+
+    change_piece = False
+    run = True
+    current_piece = get_shape()
+    next_piece = get_shape()
+    clock = pygame.time.Clock()
+    fall_time = 0
+
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    pass
+                
+                if event.key == pygame.K_RIGHT:
+                    pass
+                
+                if event.key == pygame.K_DOWN:
+                    pass
+                
+                if event.key == pygame.K_UP:
+                    pass
                 
 
 
