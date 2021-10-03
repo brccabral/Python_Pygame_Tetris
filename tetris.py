@@ -186,6 +186,7 @@ def draw_grid(surface, grid):
         for j in range(len(grid[i])):
             # surface, color, top left x,y, width, height, 1 draws a border
             pygame.draw.rect(surface, grid[i][j], (top_left_x + j*block_size, top_left_y + i*block_size, block_size, block_size), 0)
+    pygame.display.update()
 
 def clear_rows(grid, locked):
     pass
@@ -213,6 +214,8 @@ def main(win):
     next_piece = get_shape()
     clock = pygame.time.Clock()
     fall_time = 0
+
+    draw_window(win, grid)
 
     while run:
         for event in pygame.event.get():
