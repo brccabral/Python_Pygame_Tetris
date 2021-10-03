@@ -172,13 +172,13 @@ def convert_shape_format(shape):
 
     for i, line in enumerate(shp_format):
         row = list(line)
-        for j, column, in enumerate(row):
+        for j, column in enumerate(row):
             if column == '0':
                 positions.append((shape.x + j, shape.y + i))
     
     # this "trims" the dots from the shape
     for i, pos in enumerate(positions):
-        positions[i] = (pos[0] - 2, pos[i] - 4)
+        positions[i] = (pos[0] - 2, pos[1] - 4)
     
     return positions
 
