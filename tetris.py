@@ -206,9 +206,12 @@ def check_lost(positions):
 def get_shape():
     return Piece(5, 0, random.choice(shapes))
 
-def draw_text_middle(text, size, color, surface):
-    pass
-   
+def draw_text_middle(surface, text, size, color):
+    font = pygame.font.SysFont("comicsans", size, bold=True)
+    label = font.render(text, 1, color)
+
+    surface.blit(label, (top_left_x + play_width/2 - label.get_width()/2, top_left_y + play_height/2 - label.get_height()/2))
+
 def draw_grid(surface, grid):
     sx = top_left_x
     sy = top_left_y
