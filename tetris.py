@@ -195,7 +195,11 @@ def valid_space(shape, grid):
     return True
 
 def check_lost(positions):
-    pass
+    for pos in positions:
+        x, y = pos
+        if y < 0:
+            return True
+    return False
 
 def get_shape():
     return Piece(5, 0, random.choice(shapes))
