@@ -167,7 +167,17 @@ def create_grid(locked_positions={}):
 
 
 def convert_shape_format(shape):
-    pass
+    positions = []
+    shp_format = shape.shape[shape.rotation % len(shape.shape)]
+
+    for i, line in enumerate(shp_format):
+        row = list(line)
+        for j, column, in enumerate(row):
+            if column == '0':
+                positions.append((shape.x + j, shape.y + i))
+    
+    for i, pos in enumerate(positions):
+        positions[i] = (pos[0] - 2, pos[i] - 4)
 
 def valid_space(shape, grid):
     pass
