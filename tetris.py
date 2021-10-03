@@ -176,11 +176,23 @@ def convert_shape_format(shape):
             if column == '0':
                 positions.append((shape.x + j, shape.y + i))
     
+    # this "trims" the dots from the shape
     for i, pos in enumerate(positions):
         positions[i] = (pos[0] - 2, pos[i] - 4)
 
 def valid_space(shape, grid):
-    pass
+    accepted_pos = [[(j,i) for j in range(rows)] for i in range(columns)]
+    accepted_pos = [j for sub in accepted_pos for j in sub]
+
+    formatted = convert_shape_format(shape)
+
+    for pos in formatted:
+        # check if formatted shape can fit in grid
+        if pos not in accepted_pos:
+            # something to do with the "trim" above
+            if pos[1] > -1:
+                return False
+    return True
 
 def check_lost(positions):
     pass
