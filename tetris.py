@@ -179,6 +179,8 @@ def convert_shape_format(shape):
     # this "trims" the dots from the shape
     for i, pos in enumerate(positions):
         positions[i] = (pos[0] - 2, pos[i] - 4)
+    
+    return positions
 
 def valid_space(shape, grid):
     accepted_pos = [[(j,i) for j in range(rows) if grid[i][j] == (0,0,0)] for i in range(columns)]
