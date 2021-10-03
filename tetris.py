@@ -220,16 +220,22 @@ def main():
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    pass
+                    current_piece.x -= 1
+                    if not(valid_space(current_piece, grid)):
+                        current_piece.x += 1
                 
                 if event.key == pygame.K_RIGHT:
-                    pass
+                    current_piece.x += 1
+                    if not(valid_space(current_piece, grid)):
+                        current_piece.x -= 1
                 
                 if event.key == pygame.K_DOWN:
-                    pass
+                    current_piece.y += 1
+                    if not(valid_space(current_piece, grid)):
+                        current_piece.y -= 1
                 
                 if event.key == pygame.K_UP:
-                    pass
+                    current_piece.rotation += 1
                 
 
 
