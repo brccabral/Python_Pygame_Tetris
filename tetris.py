@@ -220,7 +220,27 @@ def draw_grid(surface, grid):
         pygame.draw.line(surface, (128,128,128), (sx+j*block_size, sy), (sx+j*block_size, sy+play_height))
 
 def clear_rows(grid, locked):
-    pass
+    # inc = how many rows to shift down
+    inc = 0
+    # loop backwards
+    for i in range(len(grid)-1, -1, -1):
+        row = grid[i]
+        # there is no black space
+        if (0,0,0) not in row:
+            inc += 1
+            removed_line_index = i
+            for j in range(len(row)):
+                try:
+                    del locked[(j,i)] # remove the line from locked list
+                except:
+                    continue
+    if inc > 0:
+        for key in sorted(list(locked), key = lambda x: x[1])[::-1]:
+            x, y = key
+            # move locked positions that are above the removed line index
+            if y < removed_line_index:
+                newKey = (x, y+inc)
+                locked[newKey] = locked.pop(key)
 
 def draw_next_shape(shape, surface):
     font = pygame.font.SysFont("comicsans", 30)
