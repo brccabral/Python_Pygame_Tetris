@@ -249,8 +249,23 @@ def main(win):
     next_piece = get_shape()
     clock = pygame.time.Clock()
     fall_time = 0
+    fall_speed = 0.27
 
     while run:
+        # constantly update the grid
+        grid = create_grid(locked_positions)
+
+        fall_time += clock.get_rawtime() # get time since last tick
+        clock.tick()
+        # move piece at every "fall_speed" seconds
+        if fall_time/1000 > fall_speed:
+            fall_time = 0
+            current_piece.y += 1
+            # lock current_pice - it either hit the bottom or another piece
+            if not(valid_space(current_piece, grid)) and current_piece.y > 0:
+                current_piece.y -= 1
+                change_piece = True
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
