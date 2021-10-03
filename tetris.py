@@ -342,6 +342,7 @@ def main(win):
             current_piece = next_piece
             next_piece = get_shape()
             change_piece = False
+            clear_rows(grid, locked_positions)
         
         draw_window(win, grid)
         draw_next_shape(next_piece, win)
