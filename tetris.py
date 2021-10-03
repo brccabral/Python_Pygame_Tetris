@@ -181,7 +181,10 @@ def draw_text_middle(text, size, color, surface):
     pass
    
 def draw_grid(surface, grid):
-    pass
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            # surface, color, top left x,y, width, height, 1 draws a border
+            pygame.draw.rect(surface, grid[i][j], (top_left_x + j*block_size, top_left_y + i*block_size, block_size, block_size), 0)
 
 def clear_rows(grid, locked):
     pass
