@@ -183,7 +183,7 @@ def convert_shape_format(shape):
     return positions
 
 def valid_space(shape, grid):
-    accepted_pos = [[(j,i) for j in range(rows) if grid[i][j] == (0,0,0)] for i in range(columns)]
+    accepted_pos = [[(j,i) for j in range(columns) if grid[i][j] == (0,0,0)] for i in range(rows)]
     accepted_pos = [j for sub in accepted_pos for j in sub]
 
     formatted = convert_shape_format(shape)
