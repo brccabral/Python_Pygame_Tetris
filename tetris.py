@@ -182,11 +182,14 @@ def draw_text_middle(text, size, color, surface):
     pass
    
 def draw_grid(surface, grid):
+    sx = top_left_x
+    sy = top_left_y
+
     for i in range(len(grid)):
+        # surface, color, (x1, y1), (x2, y2)
+        pygame.draw.line(surface, (128,128,128), (sx, sy+i*block_size), (sx+play_width, sy+i*block_size))
         for j in range(len(grid[i])):
-            # surface, color, top left x,y, width, height, 1 draws a border
-            pygame.draw.rect(surface, grid[i][j], (top_left_x + j*block_size, top_left_y + i*block_size, block_size, block_size), 0)
-    pygame.display.update()
+            pygame.draw.line(surface, (128,128,128), (sx+j*block_size, sy), (sx+j*block_size, sy+play_height))
 
 def clear_rows(grid, locked):
     pass
@@ -200,6 +203,12 @@ def draw_window(surface, grid):
     font = pygame.font.SysFont("comicsans", 60)
     label = font.render("Tetris", 1, (255,255,255))
     surface.blit(label,(top_left_x + play_width/2 - label.get_width()/2, 30))
+
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            # surface, color, top left x,y, width, height, 1 draws a border
+            pygame.draw.rect(surface, grid[i][j], (top_left_x + j*block_size, top_left_y + i*block_size, block_size, block_size), 0)
+
     draw_grid(surface, grid)
     pygame.draw.rect(surface, (255,0,0), (top_left_x, top_left_y, play_width, play_height), 4)
     pygame.display.update()
@@ -214,8 +223,6 @@ def main(win):
     next_piece = get_shape()
     clock = pygame.time.Clock()
     fall_time = 0
-
-    draw_window(win, grid)
 
     while run:
         for event in pygame.event.get():
@@ -242,7 +249,7 @@ def main(win):
                     current_piece.rotation += 1
                     if not(valid_space(current_piece, grid)):
                         current_piece.rotation -= 1
-        draw_grid(win, grid)
+        draw_window(win, grid)
 
 def main_menu(win):
     main(win)
