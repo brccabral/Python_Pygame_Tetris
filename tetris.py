@@ -308,6 +308,11 @@ def main(win):
         
         draw_window(win, grid)
 
+        if check_lost(locked_positions):
+            run = False
+
+    pygame.display.quit()
+
 def main_menu(win):
     main(win)
     pass
