@@ -153,7 +153,8 @@ class Piece(object):
 
 def create_grid(locked_positions={}):
     """
-    locked_positions contains colors on each block coordinate
+    locked_positions contains colors from pieces alread posioned
+    grid contains the colors on each coordiante
     """
     # black color for all blocks
     grid = [[(0,0,0) for _ in range(columns)] for _ in range(rows)]
@@ -176,11 +177,10 @@ def check_lost(positions):
 def get_shape():
     return random.choice(shapes)
 
-
 def draw_text_middle(text, size, color, surface):
     pass
    
-def draw_grid(surface, row, col):
+def draw_grid(surface, grid):
     pass
 
 def clear_rows(grid, locked):
@@ -189,8 +189,15 @@ def clear_rows(grid, locked):
 def draw_next_shape(shape, surface):
     pass
 
-def draw_window(surface):
-    pass
+def draw_window(surface, grid):
+    surface.fill((0,0,0))
+    pygame.font.init()
+    font = pygame.font.SysFont("comicsans", 60)
+    label = font.render("Tetris", 1, (255,255,255))
+    surface.blit(label,(top_left_x + play_width/2 - label.get_width()/2, 30))
+    draw_grid(surface, grid)
+    pygame.draw.rect(surface, (255,0,0), (top_left_x, top_left_y, play_width, play_height), 4)
+    pygame.display.update()
 
 def main():
     pass
