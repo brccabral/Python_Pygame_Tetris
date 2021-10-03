@@ -152,11 +152,16 @@ class Piece(object):
         self.rotation = 0
 
 def create_grid(locked_positions={}):
+    """
+    locked_positions contains colors on each block coordinate
+    """
     # black color for all blocks
     grid = [[(0,0,0) for _ in range(columns)] for _ in range(rows)]
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pass
+            if (j, i) in locked_positions:
+                c = locked_positions[(j, i)] # get color in locked_positions
+                grid[i][j] = c
 
 
 def convert_shape_format(shape):
