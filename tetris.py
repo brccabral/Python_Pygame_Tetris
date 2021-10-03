@@ -1,3 +1,4 @@
+# pip install pygame
 import pygame
 import random
 
@@ -21,9 +22,12 @@ pygame.font.init()
 # GLOBALS VARS
 s_width = 800
 s_height = 700
-play_width = 300  # meaning 300 // 10 = 30 width per block
-play_height = 600  # meaning 600 // 20 = 20 height per block
 block_size = 30
+# 10 columns, 20 rows
+columns = 10
+rows = 20
+play_width = block_size*columns  # meaning 300 // 10 = 30 width per block
+play_height = block_size*rows  # meaning 600 // 20 = 20 height per block
 
 top_left_x = (s_width - play_width) // 2
 top_left_y = s_height - play_height
@@ -134,12 +138,18 @@ T = [['.....',
       '.....']]
 
 shapes = [S, Z, I, O, J, L, T]
+# one color per shape
 shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128)]
 # index 0 - 6 represent shape
 
 
 class Piece(object):
-	pass
+	def __init__(self, x, y, shape):
+          self.x = x
+          self.y = y
+          self.shape = shape
+          self.color = shape_colors[shapes.index(shape)]
+          self.rotation = 0
 
 def create_grid(locked_positions={}):
 	pass
