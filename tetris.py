@@ -367,8 +367,11 @@ def main(win):
         draw_window(win, grid, score)
         draw_next_shape(next_piece, win)
         pygame.display.update()
-
+        
         if check_lost(locked_positions):
+            draw_text_middle(win, "You lost! Score "+str(score), 80, (255,255,255))
+            pygame.display.update()
+            pygame.time.delay(1500)
             run = False
 
     pygame.display.quit()
