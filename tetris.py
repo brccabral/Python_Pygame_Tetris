@@ -163,6 +163,7 @@ def create_grid(locked_positions={}):
             if (j, i) in locked_positions:
                 c = locked_positions[(j, i)] # get color in locked_positions
                 grid[i][j] = c
+    return grid
 
 
 def convert_shape_format(shape):
