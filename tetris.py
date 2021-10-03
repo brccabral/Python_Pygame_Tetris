@@ -175,7 +175,7 @@ def check_lost(positions):
     pass
 
 def get_shape():
-    return random.choice(shapes)
+    return Piece(5, 0, random.choice(shapes))
 
 def draw_text_middle(text, size, color, surface):
     pass
@@ -204,6 +204,8 @@ def draw_window(surface, grid):
 
 def main():
     pass
+                
+
 
 def main_menu():
     pass
