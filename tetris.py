@@ -2,6 +2,18 @@
 import pygame
 import random
 
+import os
+import sys
+
+bundle_dir = getattr(sys, "_MEIPASS", os.path.abspath(os.path.dirname(__file__)))
+
+
+# can't use this function for "scores.txt" because it needs to be updated
+# at each play
+def resource_path(relative):
+    return os.path.abspath(os.path.join(bundle_dir, relative))
+
+
 # creating the data structure for pieces
 # setting up global vars
 # functions
@@ -241,7 +253,7 @@ def draw_next_shape(shape, surface):
 
 def update_score(new_score):
     score = max_score()
-    with open("scores.txt", "w") as f:
+    with open(("scores.txt"), "w") as f:
         if score > new_score:
             f.write(str(score))
         else:
@@ -249,7 +261,7 @@ def update_score(new_score):
 
 
 def max_score():
-    with open("scores.txt", "r") as f:
+    with open(("scores.txt"), "r") as f:
         lines = f.readlines()
         score = int(lines[0].strip())
     return score
