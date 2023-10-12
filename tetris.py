@@ -253,7 +253,9 @@ def draw_next_shape(shape, surface):
 
 def update_score(new_score):
     score = max_score()
-    with open(("scores.txt"), "w") as f:
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+
+    with open(dir_path + "/scores.txt", "w") as f:
         if score > new_score:
             f.write(str(score))
         else:
@@ -261,7 +263,8 @@ def update_score(new_score):
 
 
 def max_score():
-    with open(("scores.txt"), "r") as f:
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    with open(dir_path + "/scores.txt", "r") as f:
         lines = f.readlines()
         score = int(lines[0].strip())
     return score
